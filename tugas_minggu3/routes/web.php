@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //Route::get('/', 'ManagementUserController');
-Route::resource('/user', ManagementUserController::class);
+//Route::resource('/user', ManagementUserController::class);
+Route::get("/home", function(){
+    return view("home");
+});
 
