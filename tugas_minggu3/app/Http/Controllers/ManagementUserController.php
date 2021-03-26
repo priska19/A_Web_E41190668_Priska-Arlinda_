@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class ManagementUserController extends Controller{
 
     public function index(){
-        return "method ini nantinya akan digunakan untuk mengambil semua data user.";
+        $nama = "Priska Arlinda Sabillah";
+        $pelajaran = ["workshop framework","workshop android"];
+        return view('home', compact('nama', 'pelajaran'));
     }
     public function create(){
         return"methode ini nantinya akan digunakan untuk menampilkan untuk menampilkan form untuk menambahkan data user.";
