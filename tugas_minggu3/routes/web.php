@@ -24,6 +24,13 @@ use Illuminate\Support\Facades\Route;
 //     return view("home");
 // });
 
-Route::group(['namespace' => 'Frontend'], function(){
-    Route::resource('home', 'HomeController');
+// Route::group(['namespace' => 'Frontend'], function(){
+//     Route::resource('home', 'HomeController');
+// });
+
+Route::group(['namespace' => 'Backend'], function(){
+    Route::resource('dashboard', 'DashboardController');
 });
+// Route::get("/dashboard", function(){
+//         return view("dashboard");
+//     });
