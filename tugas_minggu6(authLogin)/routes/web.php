@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/error', function () {
+    return view('error');
+})->name('error');
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('roleAdmin');
 
     Route::middleware(['admin'])->group(function(){
         Route::get('admin',[AdminController::class, 'index']);

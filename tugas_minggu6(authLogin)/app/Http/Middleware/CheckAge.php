@@ -18,7 +18,7 @@ class CheckAge
     public function handle($request, Closure $next)
     {
         if (Auth::user()->role != "admin"){
-            return redirect()->to('welcome');
+            return redirect()->route('error');
         }
         return $next($request);
     }
