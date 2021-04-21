@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -39,21 +40,20 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        $this->validate($request, [
-            'username' => 'required|string',
+        $this->validate($request,[
+            'username' => 'required|string', //validasi kolom username. bisa terisi username atau email
             'password' => 'required|string|min:6',
         ]);
 
         $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
         $login = [
             $loginType => $request->username,
             'password' => $request->password
         ];
 
-        if (auth()->attempt($login)){
+        if (auth()->attempt($login)) {
             return redirect()->route('home');
         }
-        return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
+        return redirect()->route('login')->with(['error' => 'Email/Password salah.']);
     }
 }

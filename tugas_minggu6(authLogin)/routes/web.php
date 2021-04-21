@@ -18,5 +18,30 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::middleware(['admin'])->group(function(){
+        Route::get('admin',[AdminController::class, 'index']);
+    });
+    Route::get('/logout', function(){
+        Auth::logout();
+        redirect('/');
+    });
+});
+
+
+Route::get('admin/profile', function(){
+
+});//->middleware(CheckAge::class);
+
+//Route::group(['middleware' =>['web']], function(){
+//
+//});
+
+// Route::middleware(['web', 'subscribed'])->group(function(){
+
+// });
+//Route::put('post/{id}', function(id){
+    //
+//})->middleware('role:editor');

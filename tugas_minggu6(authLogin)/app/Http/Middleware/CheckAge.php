@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class CheckAge
 {
@@ -14,33 +15,22 @@ class CheckAge
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if ($request->age<=200){
-            return redirect('home');
+        if (Auth::user()->role != "admin"){
+            return redirect()->to('welcome');
         }
         return $next($request);
     }
 }
 
-class CheckRole{
-     public function handle($request, Closure $next, $role){
-         if (!$request->user()->hasrole($role)) {
-            //return redirect('');
-         }
-         return $next($request);
-     }
-}
+// class CheckAge{
+//      public function handle($request, Closure $next){
+//         //  $datauser = users::where('client', $request->client)
 
-class StartSession{
-    public function handle($request, Closure $next, $role){
-        if (!$request->user()->hasrole($role)) {
-           //return redirect('');
-        }
-        return $next($request);
-    }
-
-    public function terminate($request, $response){
-        //
-    }
-}
+//          if (Auth::user()->role != 1) {
+//             return redirect()->route('home');
+//          }
+//          return $next($request);
+//      }
+// }
