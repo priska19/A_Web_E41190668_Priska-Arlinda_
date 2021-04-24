@@ -7,7 +7,7 @@
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="{{ asset('backend/img/favicon.png')}}">
+  <link rel="shortcut icon" href="img/favicon.png">
 
   <title>{{ config('app.name')}}</title>
 
@@ -29,11 +29,12 @@
   <link href="{{ asset('backend/css/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
   <!-- Custom styles -->
   <link rel="stylesheet" href="{{ asset('backend/css/fullcalendar.css')}}">
-  <link href="{{ asset('backend/css/widgets.css" rel="stylesheet')}}">
-  <link href="{{ asset('backend/css/style.css" rel="stylesheet')}}">
+  <link href="{{ asset('backend/css/widgets.css')}}" rel="stylesheet">
+  <link href="{{ asset('backend/css/style.css')}}" rel="stylesheet">
   <link href="{{ asset('backend/css/style-responsive.css')}}" rel="stylesheet" />
   <link href="{{ asset('backend/css/xcharts.min.css')}}" rel=" stylesheet">
   <link href="{{ asset('backend/css/jquery-ui-1.10.4.min.css')}}" rel="stylesheet">
+  @stack('content-js')
   <!-- =======================================================
     Theme Name: NiceAdmin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -308,12 +309,12 @@
       </div>
     </header>
     <!--header end-->
-    
+
     @include('backend/layouts.sidebar')
 
     @yield('content')
 
-  </section>
+    </section>
   <!-- container section start -->
 
   <!-- javascripts -->
@@ -357,6 +358,7 @@
     <script src="{{ asset('backend/js/sparklines.js')}}"></script>
     <script src="{{ asset('backend/js/charts.js')}}"></script>
     <script src="{{ asset('backend/js/jquery.slimscroll.min.js')}}"></script>
+    @stack('content-js')
     <script>
       //knob
       $(function() {
@@ -366,7 +368,6 @@
           }
         })
       });
-
       //carousel
       $(document).ready(function() {
         $("#owl-slider").owlCarousel({
@@ -374,16 +375,12 @@
           slideSpeed: 300,
           paginationSpeed: 400,
           singleItem: true
-
         });
       });
-
       //custom select box
-
       $(function() {
         $('select.styled').customSelect();
       });
-
       /* ---------- Map ---------- */
       $(function() {
         $('#map').vectorMap({

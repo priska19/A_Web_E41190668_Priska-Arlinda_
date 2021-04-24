@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //Route::get('/', 'ManagementUserController');
 
@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Backend'], function(){
     Route::resource('dashboard', 'DashboardController');
+    Route::resource('pendidikan', 'PendidikanController');
+    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
 });
 // Route::get("/dashboard", function(){
 //         return view("dashboard");
